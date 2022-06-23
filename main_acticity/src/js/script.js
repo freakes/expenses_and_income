@@ -2,15 +2,40 @@
 var main_block_elems = document.getElementById("main_block_elems");
 var add_income_btn = document.getElementById("add_income");
 var add_outcome_btn = document.getElementById("add_outcome");
-var request_complete = false;
-
 var expense_arr = new Array();
 var income_arr = new Array();
+
 const user_id = catch_get("id");
 const fname = catch_get("firstname");
 const lname = catch_get("lastname");
+const week_month = catch_get("week_month");
+
+
+var date_again = document.getElementById("period");
+if (week_month == "week") {
+  date_again.getElementsByTagName("option")[1].selected = false;
+  date_again.getElementsByTagName("option")[0].selected = true;
+} else {
+  date_again.getElementsByTagName("option")[1].selected = true;
+  date_again.getElementsByTagName("option")[0].selected = false;
+}
+let url = window.location.href;
+
+
+
+function go_to_date() {
+  if (date_again.value == "month") {
+    window.location.replace(window.location.href.slice(0, (window.location.href.length - 4)) + "mont");
+    current = 1;
+  } else {
+    window.location.replace(window.location.href.slice(0, (window.location.href.length - 4)) + "week");
+    current = 0;
+  }
+}
+
+
 show_name();
-send_request();
+send_request(true);
 
 function show_name() {
   var name_placeholder = document.getElementById("username");
@@ -21,7 +46,13 @@ income_outcome.onclick = function () {
   showPieAgain();
 };
 
-function send_request() {
+
+
+// week_month.onclick = function () {
+//   send_request();
+// };
+
+function send_request(render_or_not) {
   let xhr = new XMLHttpRequest();
 
   url = "http://localhost:8080/api/v1/client/pay/getinfo" + user_id + "/";
@@ -32,7 +63,7 @@ function send_request() {
 
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4 && xhr.status === 200) {
-      request_complete = true;
+
       data = this.responseText;
       console.log(data.length);
       var client_id = user_id;
@@ -48,20 +79,42 @@ function send_request() {
           new_data[i] = new_data[i] + "}";
         }
 
+        let current_day = new Date().getDate();
+        let current_month = new Date().getMonth() + 1;
 
-        // console.log(new_data);
+        let week_month = document.getElementById("period");
+
+        if (week_month.value == "week") {
         new_data.forEach((item) => {
           var data_el = JSON.parse(item);
           if (data_el.status === "expense") {
-            expense_arr.push(data_el);
+            if (Number(data_el.date_of_create.split("-")[2].replace(/^0+/, '')) >= (current_day - 7)) {
+              expense_arr.push(data_el);
+            }
           } else {
-            income_arr.push(data_el);
+            if (Number(data_el.date_of_create.split("-")[2].replace(/^0+/, '')) >= (current_day - 7)) {
+              income_arr.push(data_el);
+            }
           }
         });
-
+        } else {
+          new_data.forEach((item) => {
+            var data_el = JSON.parse(item);
+            if (data_el.status === "expense") {
+              if (Number(data_el.date_of_create.split("-")[1].replace(/^0+/, '')) >= (current_month - 1)) {
+                expense_arr.push(data_el);
+            }
+          } else {
+              if (Number(data_el.date_of_create.split("-")[1].replace(/^0+/, '')) >= (current_month - 1)) {
+                income_arr.push(data_el);
+              }
+            }
+          });
+      }
+      console.log(expense_arr, income_arr)
+      if (render_or_not) {
         var elems_counter = 0;
         new_data.forEach((item) => {
-          var income_outcome = document.getElementById("income_outcome");
           var new_elem = document.createElement("div");
           var elem_direction = document.createElement("div");
           var elem_sum = document.createElement("div");
@@ -96,7 +149,7 @@ function send_request() {
           date_now.textContent = data_now.date_of_create;
           elems_counter += 1;
         });
-
+      }
         var directions_arr_inc = [];
         var directions_arr_out = [];
 
@@ -127,7 +180,7 @@ function send_request() {
 
         let percents_outcome = [];
         let percents_income = [];
-
+        
         for (let i = 0; i < sum_arr_inc.length; ++i) {
           var sum_inc = sum_arr_inc
             .map((ii) => (x += ii), (x = 0))
@@ -310,10 +363,10 @@ for (let i = 0; i < income_arr.length; ++i) {
 }
 
 // console.log(directions_arr_inc);
-var di;
-var dout;
-var pi;
-var pout;
+let di;
+let dout;
+let pi;
+let pout;
 
 function showPie(directions_in, directions_out, percents_in, percents_out) {
   let directions_in_cls = directions_in;
@@ -322,9 +375,8 @@ function showPie(directions_in, directions_out, percents_in, percents_out) {
   dout = directions_out_cls;
   pi = percents_in;
   pout = percents_out;
-  var income_outcome = document.getElementById("income_outcome");
-  var week_month = document.getElementById("period");
-  var ctx = document.getElementById("myChart").getContext("2d");
+  let income_outcome = document.getElementById("income_outcome");
+  let ctx = document.getElementById("myChart").getContext("2d");
   if (income_outcome.value == "outcome") {
     var myChart = new Chart(ctx, {
       type: "pie",
@@ -348,7 +400,7 @@ function showPie(directions_in, directions_out, percents_in, percents_out) {
       options: {
         title: {
           display: true,
-          text: "Расходы по категориям",
+          text: "",
           position: "top",
           fontSize: 16,
           fontColor: "#111",
@@ -403,7 +455,7 @@ function showPie(directions_in, directions_out, percents_in, percents_out) {
       options: {
         title: {
           display: true,
-          text: "Доходы по категориям",
+          text: "",
           position: "top",
           fontSize: 16,
           fontColor: "#111",

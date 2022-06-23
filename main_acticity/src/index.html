@@ -36,19 +36,22 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6 offset-md-1 main_block">
+            Ваши доходы и расходы
+            <div id="main_block_elems"></div>
+          </div>
+          <div class="col-md-3 diagram">
+            <div class="diag-text">
             Ваши
             <select name="income_outcome" id="income_outcome">
               <option value="income">доходы</option>
               <option value="outcome" selected>расходы</option>
             </select>
-            за
-            <select name="period" id="period">
+            за  
+            <select name="period" id="period" onchange="go_to_date();">
               <option value="week" selected>неделю</option>
               <option value="month">месяц</option>
             </select>
-            <div id="main_block_elems"></div>
           </div>
-          <div class="col-md-3 diagram">
             <canvas id="myChart" width="320" height="400"></canvas>
           </div>
         </div>
@@ -131,7 +134,7 @@
                     aria-label="Default select example"
                   >
                     <option selected value="Супермаркеты">Супермаркеты</option>
-                    <option value="Автомобили">Транспорт</option>
+                    <option value="Транспорт">Транспорт</option>
                     <option value="Рестораны">Рестораны</option>
                     <option value="Здоровье">Здоровье</option>
                     <option value="ЖКХ">ЖКХ</option>

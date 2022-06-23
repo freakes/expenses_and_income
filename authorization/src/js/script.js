@@ -16,7 +16,7 @@ login_button.onclick = function () {
       var response_data = JSON.parse(this.responseText);
       console.log(response_data);
       alert('Авторизация прошла успешно!');
-      window.open('http://127.0.0.1:5500/src/index.html?id=' + response_data.id + '&firstname=' + response_data.firstname + '&lastname=' + response_data.lastname);
+      window.open('http://127.0.0.1:5500/src/index.html?id=' + response_data.id + '&firstname=' + response_data.firstname + '&lastname=' + response_data.lastname + '&week_month=week');
     } else if (xhr.readyState === 4 && xhr.status != 200){
       alert("Данные указаны неправильно!\nПовторите попытку.")
     }

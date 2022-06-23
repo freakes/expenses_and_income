@@ -1,3 +1,168 @@
-@font-face{font-family:open_sans;src:url("../fonts/opensans.ttf")}header{font-family:open_sans;margin:0 auto;padding-top:10px;height:70px;background-color:#8964ff}header .logo{font-size:30px}header .logo a{text-decoration:none;color:#000}header img{width:48px;height:48px;margin-bottom:5px}header .spent_total{font-family:open_sans;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;color:#000;font-size:20px;margin-top:3px}header #username{font-size:20px;margin-top:12px}header .exit{padding-top:10px}header .exit img{width:38px;height:38px}.main_block{padding:20px 20px;margin-top:200px;position:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-color:#2d2e30;text-align:center;color:#fff;height:340px;border-radius:30px}.main_block #main_block_elems{height:280px;border-radius:5px;overflow:auto}.main_block select{border:none;border-radius:5%;outline:none;background-color:#2d2e30;color:#fff;-webkit-appearance:none;-moz-appearance:none;appearance:none}#main_block_elems::-webkit-scrollbar{width:12px;background-color:#2d2e30}#main_block_elems::-webkit-scrollbar-track{background-color:#2d2e30;color:#2d2e30}#main_block_elems::-webkit-scrollbar-thumb{background-color:#2d2e30;color:#2d2e30}.diagram{margin-top:180px}.add_in_out{margin-top:20px;padding-top:6px;height:50px;background-color:#2d2e30;border-radius:30px;text-align:center}.add_in_out span{border-left:2px solid;border-color:#fff}.btn{background-color:#2d2e30;border-color:#2d2e30;-webkit-appearance:none;-moz-appearance:none;appearance:none}.btn:active{background-color:#2d2e30;border-color:#2d2e30}.btn:hover{background-color:#2d2e30;border-color:#2d2e30}.btn:focus{background-color:#2d2e30;border-color:#2d2e30}.dropdown{display:inline-block}.main_elem_income{margin-top:15px;border-radius:10px;padding-top:7px;height:40px;background-color:#bae1aa;text-align:left;color:#000}.main_elem_income .direction{display:inline-block;position:relative;left:10px}.main_elem_income .sum{position:relative;display:inline-block}.main_elem_income .date-of-create{position:relative;left:230px;display:inline-block}.main_elem_income button{left:220px;position:relative;display:inline-block}.main_elem_outcome{margin-top:15px;border-radius:10px;padding-top:7px;height:40px;background-color:#e91e63;text-align:left;color:#000}.main_elem_outcome .direction{position:relative;display:inline-block;left:10px}.main_elem_outcome .sum{position:relative;display:inline-block}.main_elem_outcome .date-of-create{position:relative;left:230px;display:inline-block}.main_elem_outcome button{left:220px;position:relative;display:inline-block}
+@font-face {
+  font-family: open_sans;
+  src: url("../fonts/opensans.ttf"); }
+header {
+  font-family: open_sans;
+  margin: 0 auto;
+  padding-top: 10px;
+  height: 70px;
+  background-color: #8964ff; }
+  header .logo {
+    font-size: 30px; }
+    header .logo a {
+      text-decoration: none;
+      color: black; }
+  header img {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 5px; }
+  header .spent_total {
+    font-family: open_sans;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    color: black;
+    font-size: 20px;
+    margin-top: 3px; }
+  header #username {
+    font-size: 20px;
+    margin-top: 12px; }
+  header .exit {
+    padding-top: 10px; }
+    header .exit img {
+      width: 38px;
+      height: 38px; }
+
+.main_block {
+  padding: 20px 20px;
+  margin-top: 200px;
+  position: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #2d2e30;
+  text-align: center;
+  color: #fff;
+  height: 340px;
+  border-radius: 30px; }
+  .main_block #main_block_elems {
+    height: 280px;
+    border-radius: 5px;
+    overflow: auto; }
+
+#main_block_elems::-webkit-scrollbar {
+  width: 12px;
+  background-color: #2d2e30; }
+
+#main_block_elems::-webkit-scrollbar-track {
+  background-color: #2d2e30;
+  color: #2d2e30; }
+
+#main_block_elems::-webkit-scrollbar-thumb {
+  background-color: #2d2e30;
+  color: #2d2e30; }
+
+.diagram {
+  margin-top: 180px;
+  text-align: center;
+  font-weight: bold; }
+  .diagram .diag-text {
+    position: absolute;
+    margin-top: 20px;
+    margin-left: 50px; }
+  .diagram select {
+    cursor: pointer;
+    font-weight: bold;
+    border: none;
+    border-radius: 5%;
+    outline: none;
+    background-color: #fff;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none; }
+
+.add_in_out {
+  margin-top: 20px;
+  padding-top: 6px;
+  height: 50px;
+  background-color: #2d2e30;
+  border-radius: 30px;
+  text-align: center; }
+  .add_in_out span {
+    border-left: 2px solid;
+    border-color: #fff; }
+
+.btn {
+  background-color: #2d2e30;
+  border-color: #2d2e30;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none; }
+
+.btn:active {
+  background-color: #2d2e30;
+  border-color: #2d2e30; }
+
+.btn:hover {
+  background-color: #2d2e30;
+  border-color: #2d2e30; }
+
+.btn:focus {
+  background-color: #2d2e30;
+  border-color: #2d2e30; }
+
+.dropdown {
+  display: inline-block; }
+
+.main_elem_income {
+  margin-top: 15px;
+  border-radius: 10px;
+  padding-top: 7px;
+  height: 40px;
+  background-color: #bae1aa;
+  text-align: left;
+  color: black; }
+  .main_elem_income .direction {
+    display: inline-block;
+    position: relative;
+    left: 10px; }
+  .main_elem_income .sum {
+    position: relative;
+    display: inline-block; }
+  .main_elem_income .date-of-create {
+    position: relative;
+    left: 230px;
+    display: inline-block; }
+  .main_elem_income button {
+    left: 220px;
+    position: relative;
+    display: inline-block; }
+
+.main_elem_outcome {
+  margin-top: 15px;
+  border-radius: 10px;
+  padding-top: 7px;
+  height: 40px;
+  background-color: #e91e63;
+  text-align: left;
+  color: black; }
+  .main_elem_outcome .direction {
+    position: relative;
+    display: inline-block;
+    left: 10px; }
+  .main_elem_outcome .sum {
+    position: relative;
+    display: inline-block; }
+  .main_elem_outcome .date-of-create {
+    position: relative;
+    left: 230px;
+    display: inline-block; }
+  .main_elem_outcome button {
+    left: 220px;
+    position: relative;
+    display: inline-block; }
 
 /*# sourceMappingURL=style.css.map */
