@@ -35,118 +35,159 @@
     <section>
       <div class="container">
         <div class="row">
-          <div class="col-md-6 offset-md-1 main_block">
+          <div class="col-md-6 main_block">
+            <div class="sort_by">
+              Отображать
+              <select name="category" id="sort_select" onchange="set_category();">
+                <option value="Все" selected>Все</option>
+                <option value="Супермаркеты">Супермаркеты</option>
+                <option value="Транспорт">Транспорт</option>
+                <option value="Рестораны">Рестораны</option>
+                <option value="Здоровье">Здоровье</option>
+                <option value="ЖКХ">ЖКХ</option>
+                <option value="Налоги">Налоги</option>
+                <option value="Подписки">Подписки</option>
+                <option value="Развлечения">Развлечения</option>
+                <option value="Зарплата">Зарплата</option>
+                <option value="Другие переводы">Другие переводы</option>
+                <option value="Внесение наличных">Внесение наличных</option>
+                <option value="Прочие">Прочие</option>
+              </select>
+            </div>
             Ваши доходы и расходы
             <div id="main_block_elems"></div>
           </div>
           <div class="col-md-3 diagram">
             <div class="diag-text">
-            Ваши
-            <select name="income_outcome" id="income_outcome">
-              <option value="income">доходы</option>
-              <option value="outcome" selected>расходы</option>
-            </select>
-            за  
-            <select name="period" id="period" onchange="go_to_date();">
-              <option value="week" selected>неделю</option>
-              <option value="month">месяц</option>
-            </select>
+              Ваши расходы и доходы за
+              <select name="period" id="period" onchange="go_to_date();">
+                <option value="week" selected>неделю</option>
+                <option value="month">месяц</option>
+              </select>
+            </div>
+            <canvas id="myChart" width="100" height="100"></canvas>
+            <!-- <div class="diag-text">
+              Ваши доходы за
+              <select name="period" id="period" onchange="go_to_date();">
+                <option value="week" selected>неделю</option>
+                <option value="month">месяц</option>
+              </select> -->
+            <!-- </div> -->
           </div>
-            <canvas id="myChart" width="320" height="400"></canvas>
+          <div class="col-md-3 sec_diag">
+            <canvas id="myChart2" width="100" height="100"></canvas>
           </div>
         </div>
         <div class="row">
-          <div class="col-md-2 offset-md-3 add_in_out">
+          <div class="col-md-2 offset-md-2 add_in_out">
             <div class="dropdown">
               <button
                 type="button"
                 class="btn btn-primary"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-                data-bs-auto-close="outside"
+                data-bs-toggle="modal"
+                data-bs-target="#income_modal"
               >
                 Доход
               </button>
-              <form
-                class="dropdown-menu dropdown-menu-dark p-4"
-                onsubmit="return false;"
-              >
-                <div class="mb-3">
-                  <label for="amount" class="form-label">Сумма</label>
-                  <input
-                    type="number"
-                    class="form-control"
-                    id="amount"
-                    placeholder="1000₽"
-                  />
+              <div class="modal fade" id="income_modal">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-body">
+                      <form class="p-4" onsubmit="return false;">
+                        <div class="mb-3">
+                          <label for="amount" class="form-label">Сумма</label>
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="amount"
+                            placeholder="1000₽"
+                          />
+                        </div>
+                        <div class="mb-3">
+                          <label for="get-from" class="form-label"
+                            >Категория дохода</label
+                          >
+                          <select
+                            id="get-from"
+                            class="form-select"
+                            aria-label="Default select example"
+                          >
+                            <option selected value="Зарплата">Зарплата</option>
+                            <option value="Другие переводы">
+                              Другие переводы
+                            </option>
+                            <option value="Внесение наличных">
+                              Внесение наличных
+                            </option>
+                            <option value="Прочие">Прочие</option>
+                          </select>
+                        </div>
+                        <button id="add_income" class="btn btn-primary">
+                          Добавить
+                        </button>
+                      </form>
+                    </div>
+                  </div>
                 </div>
-                <div class="mb-3">
-                  <label for="get-from" class="form-label"
-                    >Категория дохода</label
-                  >
-                  <select
-                    id="get-from"
-                    class="form-select"
-                    aria-label="Default select example"
-                  >
-                    <option selected value="Зарплата">Зарплата</option>
-                    <option value="Другие переводы">Другие переводы</option>
-                    <option value="Внесение наличных">Внесение наличных</option>
-                    <option value="Прочие">Прочие</option>
-                  </select>
-                </div>
-                <button id="add_income" class="btn btn-primary">
-                  Добавить
-                </button>
-              </form>
+              </div>
             </div>
             <span> </span>
             <div class="dropdown">
               <button
                 type="button"
                 class="btn btn-primary"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-                data-bs-auto-close="outside"
+                data-bs-toggle="modal"
+                data-bs-target="#outcome_modal"
               >
                 Расход
               </button>
-              <form
-                class="dropdown-menu dropdown-menu-dark p-4"
-                onsubmit="return false;"
-              >
-                <div class="mb-3">
-                  <label for="-amount" class="form-label">Сумма</label>
-                  <input
-                    type="number"
-                    class="form-control"
-                    id="-amount"
-                    placeholder="1000₽"
-                  />
+              <div class="modal fade" id="outcome_modal">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-body">
+                      <form class="p-4" onsubmit="return false;">
+                        <div class="mb-3">
+                          <label for="-amount" class="form-label">Сумма</label>
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="-amount"
+                            placeholder="1000₽"
+                          />
+                        </div>
+                        <div class="mb-3">
+                          <label for="expense" class="form-label"
+                            >Категория расхода</label
+                          >
+                          <select
+                            id="expense"
+                            class="form-select"
+                            aria-label="Default select example"
+                          >
+                            <option selected value="Супермаркеты">
+                              Супермаркеты
+                            </option>
+                            <option value="Транспорт">Транспорт</option>
+                            <option value="Рестораны">Рестораны</option>
+                            <option value="Здоровье">Здоровье</option>
+                            <option value="ЖКХ">ЖКХ</option>
+                            <option value="Налоги">Налоги</option>
+                            <option value="Подписки">Подписки</option>
+                            <option value="Развлечения">Развлечения</option>
+                          </select>
+                        </div>
+                        <button
+                          id="add_outcome"
+                          type="submit"
+                          class="btn btn-primary"
+                        >
+                          Добавить
+                        </button>
+                      </form>
+                    </div>
+                  </div>
                 </div>
-                <div class="mb-3">
-                  <label for="expense" class="form-label"
-                    >Категория расхода</label
-                  >
-                  <select
-                    id="expense"
-                    class="form-select"
-                    aria-label="Default select example"
-                  >
-                    <option selected value="Супермаркеты">Супермаркеты</option>
-                    <option value="Транспорт">Транспорт</option>
-                    <option value="Рестораны">Рестораны</option>
-                    <option value="Здоровье">Здоровье</option>
-                    <option value="ЖКХ">ЖКХ</option>
-                    <option value="Налоги">Налоги</option>
-                    <option value="Подписки">Подписки</option>
-                    <option value="Развлечения">Развлечения</option>
-                  </select>
-                </div>
-                <button id="add_outcome" type="submit" class="btn btn-primary">
-                  Добавить
-                </button>
-              </form>
+              </div>
             </div>
           </div>
         </div>

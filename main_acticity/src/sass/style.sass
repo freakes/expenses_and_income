@@ -2,6 +2,21 @@
   font-family: open_sans
   src: url("../fonts/opensans.ttf")
 
+body
+  background: linear-gradient(-45deg, rgba(238, 119, 82, 0.2), rgba(231, 60, 126, 0.2), rgba(35, 166, 213, 0.2), rgba(35, 213, 171, 0.2))
+  background-size: 400% 400%
+  animation: gradient 15s ease infinite
+
+@keyframes gradient
+  0%
+    background-position: 0% 50%
+
+  50%
+    background-position: 100% 50%
+
+  100%
+    background-position: 0% 50%
+
 header
   font-family: open_sans
   margin: 0 auto
@@ -11,7 +26,7 @@ header
   .logo
     font-size: 30px
     a
-      text-decoration: none 
+      text-decoration: none
       color: black
   img
     width: 48px
@@ -35,54 +50,67 @@ header
 
 .main_block
   padding: 20px 20px
-  margin-top: 200px
+  margin-top: 130px
   position: flex
-  align-items: center
+  align-items: baseline
   background-color: #2d2e30
-  text-align: center
+  // text-align: center
   color: #fff
-  height: 340px
+  height: 390px
   border-radius: 30px
+  .sort_by
+    display: inline-block
+    font-size: 15px
+    select
+      border-radius: 5px
   #main_block_elems
-    height: 280px
+    height: 330px
     border-radius: 5px
     overflow: auto
-  
 
-#main_block_elems::-webkit-scrollbar 
+#main_block_elems::-webkit-scrollbar
   width: 12px
   background-color: #2d2e30
-  // height: 100px
 
-#main_block_elems::-webkit-scrollbar-track 
+#main_block_elems::-webkit-scrollbar-track
   background-color: #2d2e30
   color: #2d2e30
 
-#main_block_elems::-webkit-scrollbar-thumb 
-  background-color: #2d2e30
-  color: #2d2e30
-
-
+#main_block_elems::-webkit-scrollbar-thumb
+  background-color: #8964ff
+  color: #8964ff
+  border-radius: 8px
 
 .diagram
-  margin-top: 180px
+  margin-top: 150px
   text-align: center
   font-weight: bold
   // padding-top: 30px
   // color: #fff
   .diag-text
     position: absolute
-    margin-top: 20px
-    margin-left: 50px
+    margin-top: 10px
+    margin-left: 180px
   select
     cursor: pointer
     font-weight: bold
     border: none
     border-radius: 5%
     outline: none
-    background-color: #fff
+    background-color: rgba(0, 0, 0, 0) 
     // color: #fff
     appearance: none
+
+.sec_diag
+  margin-top: 0px
+
+#myChart
+  display: inline-block
+
+#myChart2
+  display: inline-block
+  // padding-bottom: 50px
+  margin-top: 150px
 
 .add_in_out
   margin-top: 20px
@@ -95,6 +123,39 @@ header
     border-left: 2px solid
     border-color: #fff
 
+#add_income
+  background-color: #8964ff
+  border-color: #8964ff
+  appearance: none
+
+#add_income:active
+  background-color: #8964ff
+  border-color: #8964ff
+
+#add_income:hover
+  background-color: #8964ff
+  border-color: #8964ff
+
+#add_income:focus
+  background-color: #8964ff
+  border-color: #8964ff
+
+#add_outcome
+  background-color: #8964ff
+  border-color: #8964ff
+  appearance: none
+
+#add_outcome:active
+  background-color: #8964ff
+  border-color: #8964ff
+
+#add_outcome:hover
+  background-color: #8964ff
+  border-color: #8964ff
+
+#add_outcome:focus
+  background-color: #8964ff
+  border-color: #8964ff
 .btn
   background-color: #2d2e30
   border-color: #2d2e30
@@ -114,7 +175,7 @@ header
 
 .dropdown
   display: inline-block
-  
+
 .main_elem_income
   margin-top: 15px
   border-radius: 10px
